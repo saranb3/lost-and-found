@@ -18,5 +18,5 @@ If yes:
 
 Select one:
 
-- GitHub web interface
+GitHub web interface
 
