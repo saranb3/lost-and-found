@@ -8,10 +8,10 @@
 Confirm that you were able to access your team repository.
 
 - Repository URL:
-- Did you receive a GitHub invitation? (Yes)
+- Did you receive a GitHub invitation? (Yes
 
 If yes:
-- How did you find the invitation? (email)
+- I did it via email.
 
 ---
 
