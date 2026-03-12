@@ -19,5 +19,4 @@ If yes:
 Select one:
 
 - GitHub web interface
-- Local clone using Git
-- Other (describe)
+
