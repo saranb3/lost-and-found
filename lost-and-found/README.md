@@ -1,16 +1,32 @@
-# React + Vite
+A lost & found website for UIUC students to post and browse lost items across campus buildings. Built as a CS 222 team project.
+Tech stack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend: React + Vite + Tailwind CSS + React Router
+Backend: Supabase (Postgres, Auth, Storage)
 
-Currently, two official plugins are available:
+Prerequisites
+Before you start, make sure you have:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Node.js 20+ — check with node --version. If you don't have it, install from nodejs.org (grab the LTS version).
+Git — check with git --version. Comes pre-installed on macOS and most Linux; Windows users grab it from git-scm.com.
+A code editor — VS Code is what most of us use.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repo
+-> bashgit clone https://github.com/SP26-UIUC-CS222/Team-26.122.git
+-> cd Team-26.122
 
-## Expanding the ESLint configuration
+3. Install dependencies
+-> The React app lives in the lost-and-found/ subfolder, so step into it first:
+-> bashcd lost-and-found
+-> npm install
+This downloads everything listed in package.json into a node_modules/ folder. Takes 10–30 seconds.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. Run the dev server
+bashnpm run dev
+You should see something like:
+  VITE v5.x.x  ready in 300 ms
+  ➜  Local:   http://localhost:5173/
+Open that URL in your browser. You should see the browse page with mock item cards.
+To stop the server, press Ctrl+C in the terminal.
+
