@@ -1,33 +1,59 @@
-A lost & found website for UIUC students to post and browse lost items across campus buildings. Built as a CS 222 team project.
-Tech stack
+# Team-26.122 — UIUC Lost & Found
 
-Frontend: React + Vite + Tailwind CSS + React Router
-Backend: Supabase (Postgres, Auth, Storage)
+Hey team! This is our CS 222 project: a lost & found website for UIUC students where people can post things they've lost (or found) around campus buildings and browse what's out there.
 
-Prerequisites
-Before you start, make sure you have:
+## What we're using
 
-Node.js 20+ — check with node --version. If you don't have it, install from nodejs.org (grab the LTS version).
-Git — check with git --version. Comes pre-installed on macOS and most Linux; Windows users grab it from git-scm.com.
-A code editor — VS Code is what most of us use.
+- **Frontend:** React + Vite + Tailwind CSS + React Router
+- **Backend:** Supabase (Postgres, Auth, Storage)
 
+## Before you start
 
-1. Clone the repo
--> bashgit clone https://github.com/SP26-UIUC-CS222/Team-26.122.git
--> cd Team-26.122
+Make sure you have these installed:
 
-3. Install dependencies
--> The React app lives in the lost-and-found/ subfolder, so step into it first:
--> bashcd lost-and-found
--> npm install
-   
-This downloads everything listed in package.json into a node_modules/ folder. Takes 10–30 seconds.
+- **Node.js 20+** — run `node --version` to check. If you don't have it, grab the LTS version from [nodejs.org](https://nodejs.org).
+- **Git** — run `git --version` to check. Already on macOS/Linux. Windows folks can download it from [git-scm.com](https://git-scm.com).
+- **A code editor** — most of us use VS Code, but use whatever you like.
 
-5. Run the dev server
-bashnpm run dev
-You should see something like:
-  VITE v5.x.x  ready in 300 ms
-  ➜  Local:   http://localhost:5173/
-Open that URL in your browser. You should see the browse page with mock item cards.
-To stop the server, press Ctrl+C in the terminal.
+## Getting it running
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/SP26-UIUC-CS222/Team-26.122.git
+cd Team-26.122
+```
+
+### 2. Install dependencies
+
+The React app lives inside the `lost-and-found/` folder, so cd into it first:
+
+```bash
+cd lost-and-found
+npm install
+```
+
+This pulls everything from `package.json` into a `node_modules/` folder. Usually takes around 10–30 seconds depending on your internet.
+
+### 3. Start the dev server
+
+```bash
+npm run dev
+```
+
+You should see something like this in your terminal:
+
+```
+VITE v5.x.x  ready in 300 ms
+➜  Local:   http://localhost:5173/
+```
+
+Open that link in your browser and you should see the browse page with some mock item cards. To stop the server, hit `Ctrl+C` in the terminal.
+
+## Working on the project
+
+- Always pull `main` before starting new work: `git pull origin main`
+- Make a new branch for your feature: `git checkout -b your-name/feature-name`
+- Push your branch and open a PR when you're ready for review
+
 
