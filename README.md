@@ -20,9 +20,10 @@ A code editor — VS Code is what most of us use.
 -> The React app lives in the lost-and-found/ subfolder, so step into it first:
 -> bashcd lost-and-found
 -> npm install
+   
 This downloads everything listed in package.json into a node_modules/ folder. Takes 10–30 seconds.
 
-4. Run the dev server
+5. Run the dev server
 bashnpm run dev
 You should see something like:
   VITE v5.x.x  ready in 300 ms
