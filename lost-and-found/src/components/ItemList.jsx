@@ -15,7 +15,7 @@ function ItemList({items}) {
 
         return( 
             <div className="flex flex-col gap-3">
-            {items.map((item) => ( // goes through items array a new array --> each call returns a new item card 
+            {items.map((item) => ( // goes through items array and create new array of item cards 
                 <ItemCard key={item.id} item={item} />
             ))}
             </div>
