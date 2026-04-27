@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 function Header({ searchQuery, onSearchChange }) {
    const [showPopup, setShowPopup] = useState(false);
-  <>
+  
   return (
+     <>
     <header className=" py-10 border-b border-stone-200">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
