@@ -33,22 +33,39 @@ function BrowsePage() {
     );
   });
 
-  return (
-  <div className="min-h-screen bg-white">
-    {/* Hero spans full width — outside the centered container */}
-    <Header
-      searchQuery={searchQuery}
-      onSearchChange={setSearchQuery}
-    />
+return (
+  <div 
+    className="min-h-screen bg-white relative"
+    style={{
+      backgroundImage: 'url(/uiuc_quad.jpeg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'top center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+    }}
+  >
+    {/* White overlay that fades the image — applied via a separate layer */}
+    <div className="absolute inset-0 bg-white/50 pointer-events-none" />
 
-    {/* Body content lives inside the centered container */}
-    <div className="max-w-6xl mx-auto px-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 py-6">
-        <div className="md:col-span-1">
-          <FilterSidebar />
+    {/* All page content sits on top of the overlay */}
+    <div className="relative">
+      {/* Hero spans full width — has its own slight cream tint */}
+    <div className="sticky top-0 z-20">
+      <Header
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
+      </div>
+
+      {/* Body content lives inside the centered container */}
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 py-6">
+          <div className="md:col-span-1">
+            <FilterSidebar />
+          </div>
+        <div className="md:col-span-3 max-h-[calc(100vh-220px)] overflow-y-auto pr-2">
+        <ItemList items={filteredItems} />
         </div>
-        <div className="md:col-span-3">
-          <ItemList items={filteredItems} />
         </div>
       </div>
     </div>
