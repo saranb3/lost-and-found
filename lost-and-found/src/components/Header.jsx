@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ReportItemModal from './ReportItemModal';
 
 function Header({ searchQuery, onSearchChange }) {
    const [showPopup, setShowPopup] = useState(false);
@@ -41,25 +42,11 @@ function Header({ searchQuery, onSearchChange }) {
       </div>
     </header>
 
-{showPopup && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-            <h2 className="text-xl font-bold mb-2">Report an Item</h2>
-
-            <p className="text-sm text-stone-600 mb-4">
-              This feature is coming soon. Later, this popup will let users upload lost item details and a photo.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => setShowPopup(false)}
-              className="bg-illini-blue text-white px-4 py-2 rounded-md"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+<ReportItemModal
+  isOpen={showPopup}
+  onClose={() => setShowPopup(false)}
+/>
+        
     </>
   
   );
