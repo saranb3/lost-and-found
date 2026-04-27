@@ -12,8 +12,8 @@ Hey team! This is our CS 222 project: a lost & found website for UIUC students w
 Make sure you have these installed:
 
 - **Node.js 20+** — run `node --version` to check. If you don't have it, grab the LTS version from [nodejs.org](https://nodejs.org).
-- **Git** — run `git --version` to check. Already on macOS/Linux. Windows folks can download it from [git-scm.com](https://git-scm.com).
-- **A code editor** — most of us use VS Code, but use whatever you like.
+- **Git** — run `git --version` to check. 
+
 
 ## Getting it running
 
