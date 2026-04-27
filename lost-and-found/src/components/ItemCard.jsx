@@ -1,42 +1,50 @@
-// React component for each item card 
-// will receive data via "Props" 
+// ItemCard renders ONE lost item as a horizontal card.
+// Photo on the left, details on the right.
 
 function ItemCard({ item }) {
   return (
-    <div className="flex gap-4 bg-white border border-gray-200 rounded-lg overflow-hidden">
-      {/* Photo on the left, fixed width */}
-      <img
-        src={item.image_url}
-        alt={item.name}
-        className="w-36 h-36 object-cover flex-shrink-0"
-      />
+    <div className="flex gap-0 bg-white border border-stone-200 rounded-lg overflow-hidden hover:border-stone-300 transition-colors">
+      
+      {/* Photo space — shows the real image if one exists, otherwise a soft cream blank */}
+        {item.image_url ? (
+        <img
+            src={item.image_url}
+            alt={item.name}
+            className="w-48 self-stretch object-cover flex-shrink-0"
+        />
+        ) : (
+        <div className="w-48 self-stretch bg-stone-100 flex-shrink-0" />
+        )}
 
       {/* Details on the right */}
-      <div className="flex-1 min-w-0 py-3 pr-4">
+      <div className="flex-1 min-w-0 flex flex-col p-4">
+        
         {/* Top row: name on the left, status badge on the right */}
-        <div className="flex justify-between items-start gap-2 mb-1">
-          <h3 className="text-base font-medium text-gray-900">
+        <div className="flex justify-between items-start gap-3 mb-2">
+          <h3 className="text-lg font-semibold text-illini-blue">
             {item.name}
           </h3>
-
-          {/* Only show the "Found" badge when status is 'claimed' */}
-          {item.status === 'claimed' && (
-            <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-md whitespace-nowrap">
-              Found
-            </span>
-          )}
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+        <p className="text-sm text-stone-700 mb-4 leading-relaxed">
           {item.description}
         </p>
 
-        {/* Bottom metadata row: location, spot, date */}
-        <div className="flex gap-4 text-xs text-gray-500 flex-wrap">
-          <span>{item.location}</span>
-          <span>{item.spot}</span>
-          <span>{item.date_lost}</span>
+        {/* Bottom metadata: each piece of info has its own label */}
+        <div className="flex flex-col gap-1 text-xs text-stone-600 mt-auto">
+          <div>
+            <span className="font-semibold text-stone-800">Found at: </span>
+            <span>{item.location}</span>
+          </div>
+          <div>
+            <span className="font-semibold text-stone-800">Pick up at: </span>
+            <span>{item.spot}</span>
+          </div>
+          <div>
+            <span className="font-semibold text-stone-800">Date found: </span>
+            <span>{item.date_lost}</span>
+          </div>
         </div>
       </div>
     </div>

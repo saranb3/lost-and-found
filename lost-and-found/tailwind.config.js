@@ -8,9 +8,12 @@ export default {
     extend: {
       colors: {
         illini: {
-          orange: "#E84A27", // Illini Orange
-          blue: "#13294B",   // Illini Blue
+          orange: "#E84A27",
+          blue: "#13294B",
         },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
     },
   },

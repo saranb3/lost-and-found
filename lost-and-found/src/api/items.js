@@ -8,7 +8,7 @@ const mockItems = [
     location: 'Grainger',
     spot: 'Electronics shelf',
     date_lost: '2026-04-14',
-    image_url: 'https://placehold.co/280x200/13294B/FFFFFF?text=Hydroflask',
+    image_url: '',
     status: 'active',
   },
   {
@@ -19,7 +19,7 @@ const mockItems = [
     location: 'CIF',
     spot: 'Locker area',
     date_lost: '2026-04-12',
-    image_url: 'https://placehold.co/280x200/E84A27/FFFFFF?text=AirPods',
+    image_url: '',
     status: 'active',
   },
   {
@@ -30,7 +30,7 @@ const mockItems = [
     location: 'Main Library',
     spot: 'Room 220',
     date_lost: '2026-04-10',
-    image_url: 'https://placehold.co/280x200/13294B/FFFFFF?text=Backpack',
+    image_url: '',
     status: 'active',
   },
   {
@@ -41,7 +41,7 @@ const mockItems = [
     location: 'Ikenberry',
     spot: 'Dining hall',
     date_lost: '2026-04-08',
-    image_url: 'https://placehold.co/280x200/E84A27/FFFFFF?text=iClicker',
+    image_url: '',
     status: 'claimed',
   },
   {
@@ -52,7 +52,7 @@ const mockItems = [
     location: 'Union',
     spot: 'Food court',
     date_lost: '2026-04-15',
-    image_url: 'https://placehold.co/280x200/13294B/FFFFFF?text=Keys',
+    image_url: '',
     status: 'active',
   },
   {
@@ -63,7 +63,7 @@ const mockItems = [
     location: 'ISR',
     spot: 'Lobby',
     date_lost: '2026-04-09',
-    image_url: 'https://placehold.co/280x200/E84A27/FFFFFF?text=Hoodie',
+    image_url: '',
     status: 'active',
   },
 ];
