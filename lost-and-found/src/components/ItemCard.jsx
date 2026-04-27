@@ -21,12 +21,12 @@ function ItemCard({ item }) {
         
         {/* Top row: name on the left, status badge on the right */}
         <div className="flex justify-between items-start gap-3 mb-2">
-          <h3 className="text-lg font-semibold text-illini-blue">
+          <h3 className="text-lg font-Cause font-bold text-illini-blue">
             {item.name}
           </h3>
         </div>
 
-        {/* Description */}
+        {/* Description of item*/}
         <p className="text-sm text-stone-700 mb-4 leading-relaxed">
           {item.description}
         </p>

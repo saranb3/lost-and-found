@@ -13,7 +13,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Cause', 'system-ui', 'sans-serif'],
       },
     },
   },
