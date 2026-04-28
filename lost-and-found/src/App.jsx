@@ -1,11 +1,15 @@
-// Main App component — this is what gets rendered into the page.
-// For now it just shows the landing page with our Lost & Found logo.
-import './App.css'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
 import BrowsePage from './pages/BrowsePage';
 
 function App() {
-  return <BrowsePage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<BrowsePage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

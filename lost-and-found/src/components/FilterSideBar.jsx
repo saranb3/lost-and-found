@@ -1,42 +1,61 @@
-// FilterSidebar is a placeholder card that will filter items --> located on left hand side of website
-// Mighty built empty shell --> Somasi can drop her work logic and touch up to the rest of the page 
+const CATEGORIES = ['Electronics', 'Clothing', 'Bags', 'Keys / ID', 'Other'];
 
-function FilterSidebar() {
+function FilterSidebar({ category, onCategoryChange, sortOrder, onSortChange }) {
   return (
-    // aside is similar to div but for sidebar
-    <aside className="bg-white border border-stone-200 rounded-lg p-4 self-start"> 
-      <h2 className="text-base font-semibold text-illini-blue mb-4">
-        Filter Items
-      </h2>
+    <aside className="bg-white border border-stone-200 rounded-lg p-4 self-start">
+      <h2 className="text-base font-semibold text-illini-blue mb-4">Filter Items</h2>
 
-      {/* Location section — Somasi add checkboxes here */}
+      {/* Category filter dropdown */}
       <div className="mb-5">
         <h3 className="text-xs font-semibold text-illini-blue uppercase tracking-wide mb-2">
-          Location Found
+          Item Type
         </h3>
-        <p className="text-sm text-gray-400 italic">
-          Coming soon
-        </p>
+        <select
+          value={category}
+          onChange={(e) => onCategoryChange(e.target.value)}
+          className="w-full text-sm border border-stone-300 rounded-md px-3 py-2 focus:outline-none focus:border-illini-blue"
+          aria-label="Filter by category"
+        >
+          <option value="">All categories</option>
+          {CATEGORIES.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Item type section — Somasi add checkboxes here */}
-      <div className="mb-5">
-        <h3 className="text-xs font-semibold text-illini-blue uppercase tracking-wide mb-2">
-          Item type
-        </h3>
-        <p className="text-sm text-gray-400 italic">
-          Coming soon
-        </p>
-      </div>
-
-      {/* Date lost section — Somasi add date buttons here */}
+      {/* Sort by date toggle */}
       <div>
         <h3 className="text-xs font-semibold text-illini-blue uppercase tracking-wide mb-2">
-          Date lost
+          Sort by Date
         </h3>
-        <p className="text-sm text-gray-400 italic">
-          Coming soon
-        </p>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => onSortChange('desc')}
+            aria-pressed={sortOrder === 'desc'}
+            className={`flex-1 text-xs py-1.5 rounded-md border transition-colors ${
+              sortOrder === 'desc'
+                ? 'bg-illini-blue text-white border-illini-blue'
+                : 'bg-white text-stone-700 border-stone-300 hover:border-illini-blue'
+            }`}
+          >
+            Newest
+          </button>
+          <button
+            type="button"
+            onClick={() => onSortChange('asc')}
+            aria-pressed={sortOrder === 'asc'}
+            className={`flex-1 text-xs py-1.5 rounded-md border transition-colors ${
+              sortOrder === 'asc'
+                ? 'bg-illini-blue text-white border-illini-blue'
+                : 'bg-white text-stone-700 border-stone-300 hover:border-illini-blue'
+            }`}
+          >
+            Oldest
+          </button>
+        </div>
       </div>
     </aside>
   );
