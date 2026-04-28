@@ -1,4 +1,5 @@
-//Mock data for lost item cards --> will be replaced with supabase queries 
+import { supabase } from './supabaseClient';
+
 const mockItems = [
   {
     id: '1',
@@ -68,23 +69,51 @@ const mockItems = [
   },
 ];
 
-// Async function that returns the items.
-// We use async even though we don't need to right now —
-// when we swap to Supabase later, the call WILL be async,
-// and any code that uses getItems() will already be set up to await it.
-export async function getItems() {
-  return mockItems;
+// Fetches items from Supabase (if configured) or falls back to mock data.
+// Accepts search, category, and sortOrder so filtering/sorting happens server-side.
+export async function getItems({ search = '', category = '', sortOrder = 'desc' } = {}) {
+  if (supabase) {
+    let query = supabase
+      .from('items')
+      .select('*')
+      .order('date_lost', { ascending: sortOrder === 'asc' });
+
+    if (search.trim()) {
+      query = query.or(
+        `name.ilike.%${search.trim()}%,description.ilike.%${search.trim()}%`
+      );
+    }
+
+    if (category) {
+      query = query.eq('category', category);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+    return data;
+  }
+
+  // --- mock fallback (used when Supabase env vars are not set) ---
+  let results = [...mockItems];
+
+  if (search.trim()) {
+    const q = search.toLowerCase();
+    results = results.filter(
+      (item) =>
+        item.name.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q)
+    );
+  }
+
+  if (category) {
+    results = results.filter((item) => item.category === category);
+  }
+
+  results.sort((a, b) => {
+    const da = new Date(a.date_lost);
+    const db = new Date(b.date_lost);
+    return sortOrder === 'asc' ? da - db : db - da;
+  });
+
+  return results;
 }
-
-// When we're ready for Supabase:
-
-// import { supabase } from './supabaseClient';
-//
-// export async function getItems() {
-//   const { data, error } = await supabase
-//     .from('items')
-//     .select('*')
-//     .order('date_lost', { ascending: false });
-//   if (error) throw error;
-//   return data;
-// }
