@@ -7,7 +7,7 @@ function ReportItemModal({ isOpen, onClose }) {
   const [description, setDescription] = useState('');
   const [itemTypeId, setItemTypeId] = useState('');
   const [locationId, setLocationId] = useState('');
-  const [specific_location, setSpecificLocation] = useState('');
+  const [specificLocation, setSpecificLocation] = useState('');
   const [dateLost, setDateLost] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [itemTypes, setItemTypes] = useState([]);
@@ -43,16 +43,18 @@ function ReportItemModal({ isOpen, onClose }) {
   async function handleSubmit(e) {
     e.preventDefault();
   
-    const { error } = await supabase.from('lost_items').insert({
-      name,
-      description,
-      item_type_id: itemTypeId,
-      location_id: locationId,
-      specific_location: specificLocation
-      date_lost: dateLost,
-      image_url: imageUrl,
-      status: 'active',
-    });
+    const { error } = await supabase.from('lost_items').insert([
+  {
+    name,
+    description,
+    item_type_id: itemTypeId,
+    location_id: locationId,
+    specific_location: specificLocation,
+    date_lost: dateLost,
+    image_url: imageUrl,
+    status: 'active',
+  },
+]);
   
     if (error) {
       console.error(error);
@@ -115,7 +117,7 @@ function ReportItemModal({ isOpen, onClose }) {
             type="text"
             placeholder="Where was it left? Ex: 4th floor study room"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
-            value={specific_location}
+            value={specificLocation}
             onChange={(e) => setSpecificLocation(e.target.value)}
           />
 
