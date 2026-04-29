@@ -1,52 +1,131 @@
-function ReportItemModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+import { supabase } from './supabaseClient';
+import { useState, useEffect } from 'react';
 
+function ReportItemModal({ isOpen, onClose }) {
+  
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [itemTypeId, setItemTypeId] = useState('');
+  const [locationId, setLocationId] = useState('');
+  const [specific_location, setSpot] = useState('');
+  const [dateLost, setDateLost] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [itemTypes, setItemTypes] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const itemTypes = [];
+  const locations = [];
+  
+  useEffect(() => {
+  async function fetchFormOptions() {
+    const { data: itemTypeData, error: itemTypeError } = await supabase
+      .from('item_types')
+      .select('id, name');
+
+    const { data: locationData, error: locationError } = await supabase
+      .from('locations')
+      .select('id, name');
+
+    if (itemTypeError) {
+      console.error(itemTypeError);
+    } else {
+      setItemTypes(itemTypeData);
+    }
+
+    if (locationError) {
+      console.error(locationError);
+    } else {
+      setLocations(locationData);
+    }
+  }
+
+  if (isOpen) {
+    fetchFormOptions();
+  }
+}, [isOpen]);
+  async function handleSubmit(e) {
+    e.preventDefault();
+  
+    const { error } = await supabase.from('lost_items').insert({
+      name,
+      description,
+      item_type_id: itemTypeId,
+      location_id: locationId,
+      specific_location,
+      date_lost: dateLost,
+      image_url: imageUrl,
+      status: 'active',
+    });
+  
+    if (error) {
+      console.error(error);
+      return;
+    }
+  
+    onClose();
+  }
+
+   if (!isOpen) return null;
+ 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
         <h2 className="text-xl font-bold mb-4">Report an Item</h2>
 
-        <form className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <input
             type="text"
             placeholder="Item name"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
 
           <textarea
             placeholder="Item description"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
 
-          <select className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm">
+          <select
+            className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={itemTypeId}
+            onChange={(e) => setItemTypeId(e.target.value)}
+          >
             <option value="">Select item type</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="id-card">ID/Card</option>
-            <option value="water-bottle">Water Bottle</option>
-            <option value="keys">Keys</option>
-            <option value="other">Other</option>
+            {itemTypes.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
           </select>
 
-          <select className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm">
+          <select 
+            className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={locationId}
+            onChange={(e) => setLocationId)(e.target.value)
+            >  
             <option value="">Select location</option>
-            <option value="cif">CIF</option>
-            <option value="grainger">Grainger</option>
-            <option value="union">Union</option>
-            <option value="main-library">Main Library</option>
-            <option value="isr">ISR</option>
-            <option value="ikenberry">Ikenberry</option>
+              {locations.map((loc) => (
+                <option key={loc.id} value={loc.id}>
+                  {loc.name}
+                </option>
+              ))}
           </select>
 
           <input
             type="text"
-            placeholder="Where was it left? Ex: 2nd floor study room"
+            placeholder="Where was it left? Ex: 4th floor study room"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={specific_location}
+            onChange={(e) => setSpot(e.target.value)}
           />
 
           <input
             type="date"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
+            value={dateLost}
+            onChange={(e) => setDateLost(e.target.value)}
           />
 
           <input
@@ -58,7 +137,7 @@ function ReportItemModal({ isOpen, onClose }) {
           <div className="flex justify-end gap-3 pt-4">
             <button
               type="button"
-              onClick={onClose}   // ✅ FIXED
+              onClick={onClose}  
               className="px-4 py-2 border border-stone-300 rounded-md text-sm"
             >
               Cancel
