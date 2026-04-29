@@ -7,13 +7,11 @@ function ReportItemModal({ isOpen, onClose }) {
   const [description, setDescription] = useState('');
   const [itemTypeId, setItemTypeId] = useState('');
   const [locationId, setLocationId] = useState('');
-  const [specific_location, setSpot] = useState('');
+  const [specific_location, setSpecificLocation] = useState('');
   const [dateLost, setDateLost] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [itemTypes, setItemTypes] = useState([]);
   const [locations, setLocations] = useState([]);
-  const itemTypes = [];
-  const locations = [];
   
   useEffect(() => {
   async function fetchFormOptions() {
@@ -50,7 +48,7 @@ function ReportItemModal({ isOpen, onClose }) {
       description,
       item_type_id: itemTypeId,
       location_id: locationId,
-      specific_location,
+      specific_location: specificLocation
       date_lost: dateLost,
       image_url: imageUrl,
       status: 'active',
@@ -103,7 +101,7 @@ function ReportItemModal({ isOpen, onClose }) {
           <select 
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
             value={locationId}
-            onChange={(e) => setLocationId)(e.target.value)
+            onChange={(e) => setLocationId(e.target.value)}
             >  
             <option value="">Select location</option>
               {locations.map((loc) => (
@@ -118,7 +116,7 @@ function ReportItemModal({ isOpen, onClose }) {
             placeholder="Where was it left? Ex: 4th floor study room"
             className="w-full border border-stone-300 rounded-md px-3 py-2 text-sm"
             value={specific_location}
-            onChange={(e) => setSpot(e.target.value)}
+            onChange={(e) => setSpecificLocation(e.target.value)}
           />
 
           <input
