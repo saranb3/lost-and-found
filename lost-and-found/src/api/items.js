@@ -6,6 +6,7 @@ const mockItems = [
     name: 'Blue Hydroflask',
     description: 'Left on 2nd floor study table near the windows. Has a "UIUC Stats" sticker.',
     category: 'Other',
+    item_type_id: 10,
     location: 'Grainger',
     spot: 'Electronics shelf',
     date_lost: '2026-04-14',
@@ -17,6 +18,7 @@ const mockItems = [
     name: 'AirPods Pro case',
     description: 'White case with a small scratch on the lid. No AirPods inside, just the case.',
     category: 'Electronics',
+    item_type_id: 1,
     location: 'CIF',
     spot: 'Locker area',
     date_lost: '2026-04-12',
@@ -28,6 +30,7 @@ const mockItems = [
     name: 'Black Jansport backpack',
     description: 'Contains a spiral notebook, TI-84 calculator, and a green water bottle.',
     category: 'Backpack / Bag',
+    item_type_id: 5,
     location: 'Main Library',
     spot: 'Room 220',
     date_lost: '2026-04-10',
@@ -39,6 +42,7 @@ const mockItems = [
     name: 'iClicker remote',
     description: 'Has a small sticker with initials "JM" on the back. Battery cover is slightly loose.',
     category: 'Electronics',
+    item_type_id: 1,
     location: 'Ikenberry',
     spot: 'Dining hall',
     date_lost: '2026-04-08',
@@ -50,6 +54,7 @@ const mockItems = [
     name: 'Silver house key',
     description: 'Single key on a small red carabiner. No keychain.',
     category: 'Keys',
+    item_type_id: 3,
     location: 'Union',
     spot: 'Food court',
     date_lost: '2026-04-15',
@@ -61,6 +66,7 @@ const mockItems = [
     name: 'Gray UIUC hoodie',
     description: 'Size medium, has a small coffee stain on the right sleeve.',
     category: 'Clothing',
+    item_type_id: 2,
     location: 'ISR',
     spot: 'Lobby',
     date_lost: '2026-04-09',
@@ -106,8 +112,8 @@ export async function getItems({ search = '', category = '', sortOrder = 'desc' 
   }
 
   if (category) {
-    results = results.filter((item) => item.category === category);
-  }
+    results = results.filter((item) => item.item_type_id === Number(category));
+}
 
   results.sort((a, b) => {
     const da = new Date(a.date_lost);
