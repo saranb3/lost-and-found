@@ -35,11 +35,11 @@ function ItemCard({ item }) {
         <div className="flex flex-col gap-1 text-xs text-stone-600 mt-auto">
           <div>
             <span className="font-semibold text-stone-800">Found at: </span>
-            <span>{item.location}</span>
+            <span>{item.locations?.name}</span>
           </div>
           <div>
             <span className="font-semibold text-stone-800">Pick up at: </span>
-            <span>{item.spot}</span>
+            <span>{item.specific_location}</span>
           </div>
           <div>
             <span className="font-semibold text-stone-800">Date found: </span>
