@@ -1,15 +1,34 @@
-const CATEGORIES = ['Electronics', 'Clothing', 'Bags', 'Keys / ID', 'Other'];
+import { useState, useEffect } from 'react';
+import { supabase } from '../api/supabaseClient';
 
 function FilterSidebar({ category, onCategoryChange, sortOrder, onSortChange }) {
+  const [itemTypes, setItemTypes] = useState([]);
+
+  useEffect(() => {
+    async function fetchItemTypes() {
+      const { data, error } = await supabase
+        .from('item_types')
+        .select('id, name');
+
+      if (error) {
+        console.error(error);
+      } else {
+        setItemTypes(data);
+      }
+    }
+
+    fetchItemTypes();
+  }, []);
+
   return (
     <aside className="bg-white border border-stone-200 rounded-lg p-4 self-start">
       <h2 className="text-base font-semibold text-illini-blue mb-4">Filter Items</h2>
 
-      {/* Category filter dropdown */}
       <div className="mb-5">
         <h3 className="text-xs font-semibold text-illini-blue uppercase tracking-wide mb-2">
           Item Type
         </h3>
+
         <select
           value={category}
           onChange={(e) => onCategoryChange(e.target.value)}
@@ -17,19 +36,19 @@ function FilterSidebar({ category, onCategoryChange, sortOrder, onSortChange }) 
           aria-label="Filter by category"
         >
           <option value="">All categories</option>
-          {CATEGORIES.map((c) => (
-            <option key={c} value={c}>
-              {c}
+          {itemTypes.map((type) => (
+            <option key={type.id} value={type.id}>
+              {type.name}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Sort by date toggle */}
       <div>
         <h3 className="text-xs font-semibold text-illini-blue uppercase tracking-wide mb-2">
           Sort by Date
         </h3>
+
         <div className="flex gap-2">
           <button
             type="button"
@@ -43,6 +62,7 @@ function FilterSidebar({ category, onCategoryChange, sortOrder, onSortChange }) 
           >
             Newest
           </button>
+
           <button
             type="button"
             onClick={() => onSortChange('asc')}
