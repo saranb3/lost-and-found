@@ -18,11 +18,21 @@ function ReportItemModal({ isOpen, onClose }) {
     const { data: itemTypeData, error: itemTypeError } = await supabase
       .from('item_types')
       .select('id, name');
-
+ 
+console.log("itemTypeData:", itemTypeData);
+console.log("itemTypeError:", itemTypeError);
+console.log("locationData:", locationData);
+console.log("locationError:", locationError);
+    
     const { data: locationData, error: locationError } = await supabase
       .from('locations')
       .select('id, name');
-
+ 
+console.log("itemTypeData:", itemTypeData);
+console.log("itemTypeError:", itemTypeError);
+console.log("locationData:", locationData);
+console.log("locationError:", locationError);
+    
     if (itemTypeError) {
       console.error(itemTypeError);
     } else {
@@ -35,7 +45,7 @@ function ReportItemModal({ isOpen, onClose }) {
       setLocations(locationData);
     }
   }
-
+console.log("isOpen:", isOpen);
   if (isOpen) {
     fetchFormOptions();
   }
@@ -45,8 +55,8 @@ function ReportItemModal({ isOpen, onClose }) {
   
     const { error } = await supabase.from('lost_items').insert([
   {
-    name,
-    description,
+    name: name,
+    description: description,
     item_type_id: itemTypeId,
     location_id: locationId,
     specific_location: specificLocation,
@@ -55,7 +65,8 @@ function ReportItemModal({ isOpen, onClose }) {
     status: 'active',
   },
 ]);
-  
+   
+    
     if (error) {
       console.error(error);
       return;
