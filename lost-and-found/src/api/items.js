@@ -81,7 +81,8 @@ export async function getItems({ search = '', category = '', sortOrder = 'desc' 
   if (supabase) {
     let query = supabase
       .from('lost_items')
-      .select('*',
+      .select(`
+            '*',
              locations(name),
               item_types(name)
               `)
