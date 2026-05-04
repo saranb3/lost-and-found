@@ -27,7 +27,7 @@ const mockItems = [
     id: '3',
     name: 'Black Jansport backpack',
     description: 'Contains a spiral notebook, TI-84 calculator, and a green water bottle.',
-    category: 'Bags',
+    category: 'Backpack / Bag',
     location: 'Main Library',
     spot: 'Room 220',
     date_lost: '2026-04-10',
@@ -49,7 +49,7 @@ const mockItems = [
     id: '5',
     name: 'Silver house key',
     description: 'Single key on a small red carabiner. No keychain.',
-    category: 'Keys / ID',
+    category: 'Keys',
     location: 'Union',
     spot: 'Food court',
     date_lost: '2026-04-15',
@@ -74,23 +74,24 @@ const mockItems = [
 export async function getItems({ search = '', category = '', sortOrder = 'desc' } = {}) {
   if (supabase) {
     let query = supabase
-      .from('items')
+      .from('lost_items')
       .select('*')
       .order('date_lost', { ascending: sortOrder === 'asc' });
 
-    if (search.trim()) {
-      query = query.or(
-        `name.ilike.%${search.trim()}%,description.ilike.%${search.trim()}%`
-      );
-    }
+      if (search.trim()) {
+    query = query.or(
+      `name.ilike.%${search.trim()}%,description.ilike.%${search.trim()}%`
+    );
+  }
 
-    if (category) {
-      query = query.eq('category', category);
-    }
+  if (category) {
+    query = query.eq('item_type_id', category);
+  }
 
     const { data, error } = await query;
     if (error) throw error;
-    return data;
+    
+    return data.length > 0 ? data : mockItems;
   }
 
   // --- mock fallback (used when Supabase env vars are not set) ---
