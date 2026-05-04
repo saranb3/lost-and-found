@@ -18,11 +18,6 @@ function ReportItemModal({ isOpen, onClose }) {
     const { data: itemTypeData, error: itemTypeError } = await supabase
       .from('item_types')
       .select('id, name');
- 
-console.log("itemTypeData:", itemTypeData);
-console.log("itemTypeError:", itemTypeError);
-console.log("locationData:", locationData);
-console.log("locationError:", locationError);
     
     const { data: locationData, error: locationError } = await supabase
       .from('locations')
