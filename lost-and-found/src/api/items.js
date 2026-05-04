@@ -96,7 +96,7 @@ export async function getItems({ search = '', category = '', sortOrder = 'desc' 
     const { data, error } = await query;
     if (error) throw error;
     
-    return data.length > 0 ? data : mockItems;
+    return data;
   }
 
   // --- mock fallback (used when Supabase env vars are not set) ---
@@ -112,7 +112,7 @@ export async function getItems({ search = '', category = '', sortOrder = 'desc' 
   }
 
   if (category) {
-    results = results.filter((item) => item.item_type_id === Number(category));
+    results = results.filter((item) => item.item_type_id === Number(category)); 
 }
 
   results.sort((a, b) => {
