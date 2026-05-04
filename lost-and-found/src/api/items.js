@@ -79,13 +79,12 @@ export async function getItems({ search = '', category = '', sortOrder = 'desc' 
       .order('date_lost', { ascending: sortOrder === 'asc' });
 
       if (search.trim()) {
-    query = query.or(
-      `name.ilike.%${search.trim()}%,description.ilike.%${search.trim()}%`
-    );
-  }
+      const q = search.trim();
+      query = query.or(`name.ilike.%${q}%,description.ilike.%${q}%`);
+    }
 
   if (category) {
-    query = query.eq('item_type_id', category);
+    query = query.eq('item_type_id', Number(category));
   }
 
     const { data, error } = await query;
