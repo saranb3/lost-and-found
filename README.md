@@ -33,8 +33,6 @@ cd lost-and-found
 npm install
 ```
 
-This pulls everything from `package.json` into a `node_modules/` folder. Usually takes around 10–30 seconds depending on your internet.
-
 ### 3. Start the dev server
 
 ```bash
