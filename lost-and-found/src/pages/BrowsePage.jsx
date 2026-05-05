@@ -70,7 +70,6 @@ function BrowsePage() {
           </div>
         </div>
       </div>
-      <ReportItemModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
