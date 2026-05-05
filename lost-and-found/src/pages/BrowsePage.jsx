@@ -3,11 +3,9 @@ import { getItems } from '../api/items';
 import Header from '../components/Header';
 import FilterSidebar from '../components/FilterSideBar';
 import ItemList from '../components/ItemList';
-import ReportItemModal from '../components/ReportItemModal'; // add this
 
 
 function BrowsePage() {
-  const [isModalOpen, setIsModalOpen] = useState(false); // add this
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('');
@@ -51,14 +49,6 @@ function BrowsePage() {
         <div className="sticky top-0 z-20">
           <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
         </div>
-        <div className="flex justify-end px-6 py-2">
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-orange-500 hover:bg-orange-400 text-white px-4 py-2 rounded-md text-sm font-semibold"
-        >
-          Report Item
-        </button>
-      </div>
 
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 py-6">
