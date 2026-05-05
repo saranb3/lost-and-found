@@ -5,12 +5,12 @@ function ReportItemModal({ isOpen, onClose }) {
   
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [itemTypes, setItemTypes] = useState([]);  // add this back
   const [itemTypeId, setItemTypeId] = useState('');
   const [locationId, setLocationId] = useState('');
   const [specificLocation, setSpecificLocation] = useState('');
   const [dateLost, setDateLost] = useState('');
-  const [imageUrl, setImageUrl] = useState(null);  
-  const [itemTypes, setItemTypes] = useState([]);
+  const [imageFile, setImageFile] = useState(null); 
   const [locations, setLocations] = useState([]);
   
   async function uploadImage(file) {
@@ -65,9 +65,9 @@ console.log("isOpen:", isOpen);
   async function handleSubmit(e) {
     e.preventDefault();
   let uploadedUrl = '';
-  if (imageUrl) {
+  if (imageFile) {
     try {
-      uploadedUrl = await uploadImage(imageUrl);
+      uploadedUrl = await uploadImage(imageFile);
     } catch (err) {
       console.error('Image upload failed:', err);
       return;
