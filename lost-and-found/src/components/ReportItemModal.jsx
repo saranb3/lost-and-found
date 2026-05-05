@@ -18,7 +18,7 @@ function ReportItemModal({ isOpen, onClose }) {
   const fileName = `${Date.now()}.${fileExt}`;
 
   const { error } = await supabase.storage
-    .from('item-images')
+    .from('lost-item-images')
     .upload(fileName, file);
 
   if (error) throw error;
