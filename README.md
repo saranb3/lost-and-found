@@ -43,15 +43,8 @@ You should see something like this in your terminal:
 
 ```
 VITE v5.x.x  ready in 300 ms
-➜  Local:   http://localhost:5173/
+Local:   http://localhost:5173/
 ```
 
-Open that link in your browser and you should see the browse page with some mock item cards. To stop the server, hit `Ctrl+C` in the terminal.
-
-## Working on the project
-
-- Always pull `main` before starting new work: `git pull origin main`
-- Make a new branch for your feature: `git checkout -b your-name/feature-name`
-- Push your branch and open a PR when you're ready for review
-
+Open the link after "Local: " in your browser and you should see the browse page with some sample mock items! 
 
