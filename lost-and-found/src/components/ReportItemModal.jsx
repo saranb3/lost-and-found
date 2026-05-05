@@ -9,9 +9,26 @@ function ReportItemModal({ isOpen, onClose }) {
   const [locationId, setLocationId] = useState('');
   const [specificLocation, setSpecificLocation] = useState('');
   const [dateLost, setDateLost] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState(null);  
   const [itemTypes, setItemTypes] = useState([]);
   const [locations, setLocations] = useState([]);
+  
+  async function uploadImage(file) {
+  const fileExt = file.name.split('.').pop();
+  const fileName = `${Date.now()}.${fileExt}`;
+
+  const { error } = await supabase.storage
+    .from('item-images')
+    .upload(fileName, file);
+
+  if (error) throw error;
+
+  const { data } = supabase.storage
+    .from('lost-item-images')
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
+}
   
   useEffect(() => {
   async function fetchFormOptions() {
@@ -22,7 +39,7 @@ function ReportItemModal({ isOpen, onClose }) {
     const { data: locationData, error: locationError } = await supabase
       .from('locations')
       .select('id, name');
- 
+
 console.log("itemTypeData:", itemTypeData);
 console.log("itemTypeError:", itemTypeError);
 console.log("locationData:", locationData);
@@ -47,7 +64,15 @@ console.log("isOpen:", isOpen);
 }, [isOpen]);
   async function handleSubmit(e) {
     e.preventDefault();
-  
+  let uploadedUrl = '';
+  if (imageUrl) {
+    try {
+      uploadedUrl = await uploadImage(imageUrl);
+    } catch (err) {
+      console.error('Image upload failed:', err);
+      return;
+    }
+  }
     const { error } = await supabase.from('lost_items').insert([
   {
     name: name,
@@ -56,7 +81,7 @@ console.log("isOpen:", isOpen);
     location_id: locationId,
     specific_location: specificLocation,
     date_lost: dateLost,
-    image_url: imageUrl,
+    image_url: uploadedUrl,
     status: 'active',
   },
 ]);
@@ -69,6 +94,7 @@ console.log("isOpen:", isOpen);
   
     onClose();
   }
+  
 
    if (!isOpen) return null;
  
@@ -138,6 +164,7 @@ console.log("isOpen:", isOpen);
             type="file"
             accept="image/*"
             className="w-full text-sm"
+            onChange={(e) => setImageFile(e.target.files[0])}
           />
 
           <div className="flex justify-end gap-3 pt-4">
