@@ -82,7 +82,7 @@ console.log("isOpen:", isOpen);
     specific_location: specificLocation,
     date_lost: dateLost,
     image_url: uploadedUrl,
-    status: 'active',
+    status: 'lost',
   },
 ]);
    
