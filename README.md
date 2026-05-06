@@ -2,14 +2,21 @@
 
 Hey team! This is our CS 222 project: a lost & found website for UIUC students where people can post things they've lost (or found) around campus buildings and browse what's out there.
 
-## What we're using
+## Developers
+- **Man Kwanpracha:** Supabase lead + item detail
+- **Yohali Bopeya:** Reporting lost items button and image upload. 
+- **Mighty Burapachaisri:** post management (item cards)
+- **Sommasichukwu Egbuna:**  Browse feed + search/filter
 
+## What we're using
 - **Frontend:** React + Vite + Tailwind CSS + React Router
 - **Backend:** Supabase (Postgres, Auth, Storage)
+## Technical Architecture
 
-## Before you start
+<img width="1075" height="315" alt="component-arch" src="https://github.com/user-attachments/assets/af38f066-19af-482d-9e4b-fc963fccd25b" />
 
-Make sure you have these installed:
+## Enviroment Setup
+Before you start make sure you have these installed:
 
 - **Node.js 20+** — run `node --version` to check. If you don't have it, grab the LTS version from [nodejs.org](https://nodejs.org).
 - **Git** — run `git --version` to check. 
