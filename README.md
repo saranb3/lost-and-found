@@ -1,11 +1,11 @@
 # Team-26.122 — UIUC Lost & Found
 
-Hey team! This is our CS 222 project: a lost & found website for UIUC students where people can post things they've lost (or found) around campus buildings and browse what's out there.
+Hi there! Welcome to Lost & Found, a full-stack web app built for UIUC students to report and browse lost items across the UIUC campus buildings. Users can post found items, search by location, and reconnect with their belongings through a clean, intuitive platform. 
 
 ## Developers
+- **Mighty Burapachaisri:** Frontend Lead + Post management (item cards)
 - **Man Kwanpracha:** Supabase lead + item detail
 - **Yohali Bopeya:** Reporting lost items button and image upload. 
-- **Mighty Burapachaisri:** post management (item cards)
 - **Sommasichukwu Egbuna:**  Browse feed + search/filter
 
 ## What we're using
