@@ -3,7 +3,7 @@
 Hi there! Welcome to Lost & Found, a full-stack web app built for UIUC students to report and browse lost items across the UIUC campus buildings. Users can post found items, search by location, and reconnect with their belongings through a clean, intuitive platform. 
 
 ## Developers
-- **Mighty Burapachaisri:** Frontend Lead + Post management (item cards)
+- **Saran (Mighty) Burapachaisri:** Project lead + frontend coordinator
 - **Man Kwanpracha:** Supabase lead + item detail
 - **Yohali Bopeya:** Reporting lost items button and image upload. 
 - **Sommasichukwu Egbuna:**  Browse feed + search/filter
